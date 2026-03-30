@@ -24,7 +24,13 @@ namespace ButtonHelpers
     uint8_t globalButtonId = 0;
 }
 
-Button::Button(uint32_t pin, ButtonType bType, ButtonPolarity bPolarity, uint32_t heldMS)
+Button::Button
+    (
+        uint32_t pin,
+        ButtonType bType,
+        ButtonPolarity bPolarity,
+        uint32_t heldMS
+    )
     : _buttonType(bType)
     , _buttonState(ButtonState::NotPressed)
     , _buttonPolarity(bPolarity)
@@ -34,6 +40,34 @@ Button::Button(uint32_t pin, ButtonType bType, ButtonPolarity bPolarity, uint32_
     , _heldMS(heldMS)
 {
     pinMode(pin, INPUT);
+    _buttonId = ButtonHelpers::globalButtonId++;
+}
+
+Button::Button
+    (
+        uint32_t pin,
+        ButtonType bType,
+        ButtonPolarity bPolarity,
+        uint32_t heldMS,
+        bool usePullup
+    )
+    : _buttonType(bType)
+    , _buttonState(ButtonState::NotPressed)
+    , _buttonPolarity(bPolarity)
+    , _pinName(pin)
+    , _isLongPressHandled(false)
+    , _isCooloff(false)
+    , _heldMS(heldMS)
+{
+    if (usePullup)
+    {
+        pinMode(pin, INPUT_PULLUP);
+    }
+    else
+    {
+        pinMode(pin, INPUT);
+    }
+
     _buttonId = ButtonHelpers::globalButtonId++;
 }
 

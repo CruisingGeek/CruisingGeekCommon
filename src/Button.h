@@ -98,7 +98,7 @@ enum ButtonPolarity
 class Button
 {
   public:
-    /**
+  /**
      * @brief   Constructs a new instance of the Button class.
      *
      * @param   pin
@@ -119,7 +119,42 @@ class Button
      *          Length in milliseconds that is considered to be the held state vs short
      *          press.
      **/
-    Button(uint32_t pin, ButtonType bType, ButtonPolarity bPolarity, uint32_t heldMS);
+    Button(
+        uint32_t pin,
+        ButtonType bType,
+        ButtonPolarity bPolarity,
+        uint32_t heldMS);
+    
+    /**
+     * @brief   Constructs a new instance of the Button class.
+     *
+     * @param   pin
+     *          Digital pin to associate as an input with this button. Should be a
+     *          valid value from the unnamed enum in variants.h file.
+     *          IE PA9, PB9
+     *
+     *          For OneFX, defined constants SW1 and SW2 can be used, which map
+     *          to the two switch pads on the board.
+     *
+     * @param   bType
+     *          Defines what type of button is attached.
+     *
+     * @param   bPolarity
+     *          Defines if the button is considered pressed when it sees low or high.
+     *
+     * @param   heldMS
+     *          Length in milliseconds that is considered to be the held state vs short
+     *          press.
+     * 
+     * @param   usePullup
+     *          If true, will initialize this input pin with the built-in 10k pullup.
+     **/
+    Button(
+        uint32_t pin,
+        ButtonType bType,
+        ButtonPolarity bPolarity,
+        uint32_t heldMS,
+        bool usePullup);
 
     /**
      * @brief   Updates the button properties for the specified button.
