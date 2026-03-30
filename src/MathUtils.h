@@ -1,13 +1,15 @@
 /**************************************************************************************
- * Copyright Naigon's Electronic Creations 2021. All rights reserved.
+ * Copyright Cruising Geek 2021. All rights reserved.
  **************************************************************************************/
 
 /**
   *************************************************************************************
   * @file    MathUtils.h
-  * @author  Naigon's Electronic Creations
-  * @brief   MathUtils
-  *          Math functionality wrappers
+  * 
+  * @author  Scott DeBoer of Cruising Geek
+  * 
+  * @brief   Math functionality wrappers
+  * 
   *************************************************************************************
 **/
 
@@ -31,7 +33,7 @@ extern "C"
      * @param   b
      *          The other bounds.
      * 
-     * @return  Random interger that is inclusively between a and b.
+     * @return  Random integer that is inclusively between a and b.
      **/
     int32_t randomBetween(int32_t a, int32_t b);
 

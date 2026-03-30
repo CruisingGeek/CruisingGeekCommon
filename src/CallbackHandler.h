@@ -1,15 +1,18 @@
 /**************************************************************************************
- * Copyright Naigon's Electronic Creations 2018. All rights reserved.
+ * Copyright Cruising Geek 2021. All rights reserved.
  **************************************************************************************/
 
 /**
   *************************************************************************************
   * @file    MotionSensor.h
-  * @author  Naigon's Electronic Creations
-  * @brief   CallbackHandler
-  *          Class handles registering and calling a single user-defined callback. In
+  * 
+  * @author  Scott DeBoer of Cruising Geek
+  * 
+  * @brief   Handler instance that can be used to fire a method upon event occurrence.
+  * 
+  * @details Class handles registering and calling a single user-defined callback. In
   *          general, an implemented class with have this class as a private member,
-  *          and itself will implement the ICallbackHandler interface, defering to
+  *          and itself will implement the ICallbackHandler interface, deferring to
   *          this class to do the lifting. The FireCallback method will then not be
   *          exposed to the outside class, allowing it control of when to notify
   *          the observer.

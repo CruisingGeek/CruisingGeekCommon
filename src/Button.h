@@ -1,21 +1,30 @@
 /**************************************************************************************
- * Copyright Naigon's Electronic Creations 2018. All rights reserved.
+ * Copyright Cruising Geek 2021. All rights reserved.
  **************************************************************************************/
 
 /**
   *************************************************************************************
-  * @file   Button.h
-  * @author Naigon's Electronic Creations
-  * @brief  Button
-  *         Class for managing input from a single button.
+  * @file    Button.h
   * 
-  *         NOTE: A system is limited to 256 active buttons for its entire lifetime.
+  * @author  Naigon's Electronic Creations
   * 
-  *         NOTE: It is expected that each button will be created as a global
-  *         variable and last the duration of the application. This ensures that each
-  *         button retains a single unique Id for the entire life of the program, and
-  *         prevents the system from running out of ids even when there are less than
-  *         256 active buttons.
+  * @brief   Button class for managing input from a single button.
+  * 
+  * @details Button class wrapper for managing a single button. It handles setting up
+  *          the Arduino pin for input appropriately, and provides a way to call from
+  *          loop() to get the appropriate button state, namely if the button was held
+  *          for a specified duration or just pressed.
+  * 
+  *          Supports latching buttons as well, though in that case it can only
+  *          indicate if the button is latched or not.
+  * 
+  *          NOTE: A system is limited to 256 active buttons for its entire lifetime.
+  * 
+  *          NOTE: It is expected that each button will be created as a global
+  *          variable and last the duration of the application. This ensures that each
+  *          button retains a single unique Id for the entire life of the program, and
+  *          prevents the system from running out of ids even when there are less than
+  *          256 active buttons.
   *************************************************************************************
 **/
 
@@ -23,7 +32,68 @@
 #define __Button_H_
 
 #include "Arduino.h"
-#include "ButtonState.h"
+
+/**
+ * @brief   Defines possible states a Button class can be in.
+ */
+enum ButtonState
+{
+    // This state means the button is not pressed.
+    NotPressed = 0,
+
+    // This state means the button is pressed, however it cannot be determined or it is
+    // not important if the button is going to be released as a long or short press.
+    Pressed,
+
+    // This means the button was pressed and released less than the time deemed to be
+    // the long length. The button is definitely released to get into this state.
+    ShortPress,
+
+    // This means the button is held for at least the length defined as the long press
+    // time. The button could still be held or it could be released.
+    LongPress,
+
+    // This state indicates that a button went from held to released within the previous
+    // cycle.
+    Released,
+};
+
+/**
+ * @brief   The typ of button to be used.
+ * 
+ * @details A button type for each button. There are two main types - momentary and
+ *          latching. Generally momentary is preferred, as latching only can indicate
+ *          if a button is latched or not.
+ * 
+ *          The pullup versions are only for informing the setup process, and do NOT
+ *          have any changes in operation otherwise.
+ * 
+ *          NOTE: Selecting either of the pullup types but then setting active high is
+ *          an error and will be ignored; the pullup will be applied but the button
+ *          will never see an active value.
+ */
+enum ButtonType
+{
+    // Momentary button is the default state. Assumed NO type. Allows for both a short
+    // and long press states.
+    Momentary = 0,
+
+    // Latching button. Assumed NO type. Only allows pressed and not pressed states.
+    Latching = 1,
+};
+
+/**
+ * @brief   Active polarity for the button.
+ * 
+ * @details Set 'ActiveHigh' if you want the button to be determined as pressed when
+ *          Arduino reads the pin as HIGH; set 'ActiveLow' if you want the button to
+ *          be determined as pressed when Arduino reads the pin as LOW.
+ */
+enum ButtonPolarity
+{
+    ActiveLow = 0,
+    ActiveHigh = 1,
+};
 
 class Button
 {
@@ -70,7 +140,9 @@ class Button
         uint32_t heldMS);
 
     /**
-     * @summary Determine the current button state. This method is ensured to return
+     * @brief   Call in loop() to determine the current button state.
+     * 
+     * @details Determine the current button state. This method is ensured to return
      *          the state exactly once; subsequent reads after the first with a result
      *          will return NotPressed. This ensures that a new action will not be
      *          observed until the user releases the button.

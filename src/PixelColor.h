@@ -1,14 +1,19 @@
 /**************************************************************************************
- * Copyright Naigon's Electronic Creations 2021. All rights reserved.
+ * Copyright Cruising Geek 2021. All rights reserved.
  **************************************************************************************/
 
 /**
   *************************************************************************************
   * @file    PixelColor.h
-  * @author  Naigon's Electronic Creations
-  * @brief   PixelColor
-  *          Definition for a single pixel color of a blade. It can represent the
-  *          entire blade in the case of in-hilt LED blades.
+  * 
+  * @author  Scott DeBoer of Cruising Geek
+  * 
+  * @brief   Defines color for a neo pixel
+  * 
+  * @details Definition for a single pixel color of an array of pixel blades. It can
+  *          be used as a representation for the entire array and each individual
+  *          pixel of the light array.
+  * 
   *************************************************************************************
 **/
 

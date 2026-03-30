@@ -1,12 +1,16 @@
 /**************************************************************************************
- * Copyright Naigon's Electronic Creations 2018. All rights reserved.
+ * Copyright Cruising Geek 2021. All rights reserved.
  **************************************************************************************/
 
 /**
   *************************************************************************************
   * @file    Stopwatch.h
-  * @author  Naigon's Electronic Creations
-  * @brief   Stopwatch class for inline time monitoring. Does not use timer hardware.
+  * 
+  * @author  Scott DeBoer of Cruising Geek
+  * 
+  * @brief   Stopwatch class for inline time monitoring.
+  * 
+  * @details Stopwatch class for inline time monitoring. Does not use timer hardware.
   *          Good for low-priority monitoring such as determining if a button was held
   *          for a certain duration.
   *

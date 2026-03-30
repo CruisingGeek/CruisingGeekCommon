@@ -1,14 +1,22 @@
 /**************************************************************************************
- * Copyright Naigon's Electronic Creations 2018. All rights reserved.
+ * Copyright Cruising Geek 2021. All rights reserved.
  **************************************************************************************/
 
 /**
   *************************************************************************************
   * @file    IEventCallbackHandler.h
-  * @author  Naigon's Electronic Creations
-  * @brief   IEventCallbackHandler
-  *          Interface for registering and calling back different functions when a
-  *          specific event occurs.
+  * 
+  * @author  Scott DeBoer of Cruising Geek
+  * 
+  * @brief   Define methods for generic method callback.
+  * 
+  * @details Interface for registering and calling back different functions when a
+  *          specific event occurs. Generally a class will implement this interface,
+  *          and will hold a private instance of a Callback class.
+  * 
+  *          This version supports an EventId, which is a unique identifier that can
+  *          be associated with the event that triggered the callback.
+  * 
   *************************************************************************************
 **/
 

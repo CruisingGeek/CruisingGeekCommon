@@ -1,15 +1,18 @@
 /**************************************************************************************
- * Copyright Naigon's Electronic Creations 2018. All rights reserved.
+ * Copyright Cruising Geek 2021. All rights reserved.
  **************************************************************************************/
 
 /**
   *************************************************************************************
   * @file    ICallbackHandler.h
-  * @author  Naigon's Electronic Creations
-  * @brief   ICallbackHandler
-  *          Interface for registering and calling a single user-defined callback. IE
-  *          a limited observable pattern, where only one method can be registered,
-  *          and a pointer to only one parameter can be sent.
+  * 
+  * @author  Scott DeBoer of Cruising Geek
+  * 
+  * @brief   Define methods for generic method callback.
+  * 
+  *          Interface for registering and calling back different functions when a
+  *          specific event occurs. Generally a class will implement this interface,
+  *          and will hold a private instance of a Callback class.
   *************************************************************************************
 **/
 
